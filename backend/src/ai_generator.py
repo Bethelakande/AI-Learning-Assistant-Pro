@@ -48,10 +48,10 @@ The response should be valid JSON ONLY, no additional text or formatting."""
         
         # Parse the JSON response
         try:
-            response_data = json.loads(response.content)
+            response_data = json.loads(response.content) # from JSON to python dictionary
             print("=========JSON parsed=========")
             print("response_data: ", response_data)
-        except json.JSONDecodeError as json_error:
+        except json.JSONDecodeError as json_error: # if JSON is not valid
             print(f"JSON parsing error: {json_error}")
             print(f"Raw response: {response.content}")
             raise ValueError(f"Invalid JSON response from AI: {json_error}")
@@ -67,7 +67,7 @@ The response should be valid JSON ONLY, no additional text or formatting."""
         
         return response_data
         
-    except Exception as e:
+    except Exception as e: # if any exception occurs
         print("=========Exception occurred=========")
         print("Exception: ", e)
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
